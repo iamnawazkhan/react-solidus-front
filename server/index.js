@@ -14,7 +14,7 @@ const httpProxy = require('http-proxy');
 const apiPort = argv.apiPort || process.env.API_PORT || 4030;
 const apiHost = argv.apiHost || process.env.API_HOST || 'localhost';
 const proxy = httpProxy.createProxyServer({
-  target: `http://${apiHost}:${apiPort}/api`
+  target: `http://${apiHost}:${apiPort}/api`,
 });
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
