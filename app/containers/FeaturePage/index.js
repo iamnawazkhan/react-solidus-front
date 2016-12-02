@@ -8,10 +8,6 @@ import Helmet from 'react-helmet';
 
 import messages from './messages';
 import { FormattedMessage } from 'react-intl';
-import H1 from 'components/H1';
-import List from './List';
-import ListItem from './ListItem';
-import ListItemTitle from './ListItemTitle';
 
 export default class FeaturePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -30,55 +26,55 @@ export default class FeaturePage extends React.Component { // eslint-disable-lin
             { name: 'description', content: 'Feature page of React.js Boilerplate application' },
           ]}
         />
-        <H1>
+        <h1>
           <FormattedMessage {...messages.header} />
-        </H1>
-        <List>
-          <ListItem>
-            <ListItemTitle>
+        </h1>
+        <ul>
+          <li>
+            <p>
               <FormattedMessage {...messages.scaffoldingHeader} />
-            </ListItemTitle>
+            </p>
             <p>
               <FormattedMessage {...messages.scaffoldingMessage} />
             </p>
-          </ListItem>
+          </li>
 
-          <ListItem>
-            <ListItemTitle>
+          <li>
+            <p>
               <FormattedMessage {...messages.feedbackHeader} />
-            </ListItemTitle>
+            </p>
             <p>
               <FormattedMessage {...messages.feedbackMessage} />
             </p>
-          </ListItem>
+          </li>
 
-          <ListItem>
-            <ListItemTitle>
+          <li>
+            <p>
               <FormattedMessage {...messages.routingHeader} />
-            </ListItemTitle>
+            </p>
             <p>
               <FormattedMessage {...messages.routingMessage} />
             </p>
-          </ListItem>
+          </li>
 
-          <ListItem>
-            <ListItemTitle>
+          <li>
+            <p>
               <FormattedMessage {...messages.networkHeader} />
-            </ListItemTitle>
+            </p>
             <p>
               <FormattedMessage {...messages.networkMessage} />
             </p>
-          </ListItem>
+          </li>
 
-          <ListItem>
-            <ListItemTitle>
+          <li>
+            <p>
               <FormattedMessage {...messages.intlHeader} />
-            </ListItemTitle>
+            </p>
             <p>
               <FormattedMessage {...messages.intlMessage} />
             </p>
-          </ListItem>
-        </List>
+          </li>
+        </ul>
       </div>
     );
   }

@@ -6,7 +6,6 @@
 
 import React from 'react';
 
-import Select from './Select';
 import ToggleOption from '../ToggleOption';
 
 function Toggle(props) {
@@ -20,9 +19,9 @@ function Toggle(props) {
   }
 
   return (
-    <Select value={props.value} onChange={props.onToggle}>
+    <select value={props.value} onChange={props.onToggle}>
       {content}
-    </Select>
+    </select>
   );
 }
 

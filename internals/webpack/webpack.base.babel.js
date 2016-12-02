@@ -11,6 +11,7 @@ module.exports = (options) => ({
     path: path.resolve(process.cwd(), 'build'),
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
+  context: path.join(__dirname, '..', '..', 'app'),
   module: {
     loaders: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel
@@ -26,6 +27,10 @@ module.exports = (options) => ({
       test: /\.css$/,
       include: /node_modules/,
       loaders: ['style-loader', 'css-loader'],
+    }, {
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      loader: 'style!css?module&localIdentName=[local]___[hash:base64:5]!sass',
     }, {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file-loader',
@@ -61,6 +66,13 @@ module.exports = (options) => ({
       },
     }),
     new webpack.NamedModulesPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        sassLoader: {
+          includePaths: [path.join(__dirname, '..', '..', 'app')],
+        },
+      },
+    }),
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
@@ -68,6 +80,7 @@ module.exports = (options) => ({
       '.js',
       '.jsx',
       '.react.js',
+      '.scss',
     ],
     mainFields: [
       'browser',

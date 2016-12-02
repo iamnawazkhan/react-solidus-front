@@ -1,8 +1,5 @@
 import React from 'react';
 
-import Ul from './Ul';
-import Wrapper from './Wrapper';
-
 function List(props) {
   const ComponentToRender = props.component;
   let content = (<div></div>);
@@ -18,11 +15,11 @@ function List(props) {
   }
 
   return (
-    <Wrapper>
-      <Ul>
+    <div>
+      <ul>
         {content}
-      </Ul>
-    </Wrapper>
+      </ul>
+    </div>
   );
 }
 
