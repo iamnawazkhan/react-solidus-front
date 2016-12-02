@@ -10,6 +10,13 @@ const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngr
 const resolve = require('path').resolve;
 const app = express();
 
+const httpProxy = require('http-proxy');
+const apiPort = argv.apiPort || process.env.API_PORT || 4030;
+const apiHost = argv.apiHost || process.env.API_HOST || 'localhost';
+const proxy = httpProxy.createProxyServer({
+  target: `http://${apiHost}:${apiPort}/api`
+});
+
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
@@ -21,6 +28,11 @@ setup(app, {
 
 // get the intended port number, use port 3000 if not provided
 const port = argv.port || process.env.PORT || 3000;
+
+// Proxy to API server
+app.use('/api', (req, res) => {
+  proxy.web(req, res);
+});
 
 // Start your app.
 app.listen(port, (err) => {

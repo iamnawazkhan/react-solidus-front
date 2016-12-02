@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 import Banner from './banner.jpg';
 import messages from './messages';
-import styles from 'components/Header/styles';
+import styles from 'components/Header/styles.scss';
 import 'styles/core.scss';
 
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
