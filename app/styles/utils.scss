@@ -1,0 +1,25 @@
+:global {
+  .fa {
+    font-size: 24px;
+    margin: 8px;
+  }
+
+  .icon-link {
+    color: white;
+    text-decoration: none;
+
+    &:hover, &:focus {
+      color: white;
+      text-decoration: none;
+      outline: none;
+    }
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+
+  .relative {
+    position: relative;
+  }
+}

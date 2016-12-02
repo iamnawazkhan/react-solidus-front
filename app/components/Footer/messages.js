@@ -1,19 +1,12 @@
-/*
- * Footer Messages
- *
- * This contains all the text for the Footer component.
- */
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  licenseMessage: {
-    id: 'boilerplate.components.Footer.license.message',
-    defaultMessage: 'This project is licensed under the MIT license.',
+  developerLinkTitle: {
+    id: 'boilerplate.components.Footer.developerLinkTitle',
+    defaultMessage: 'Developer\'s pages',
   },
-  authorMessage: {
-    id: 'boilerplate.components.Footer.author.message',
-    defaultMessage: `
-      Made with love by {author}.
-    `,
+  socialNetworkTitle: {
+    id: 'boilerplate.components.Footer.socialNetworkTitle',
+    defaultMessage: 'SaleMonster in social networks',
   },
 });

@@ -1,17 +1,12 @@
-/*
- * HomePage Messages
- *
- * This contains all the text for the HomePage component.
- */
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  home: {
-    id: 'boilerplate.components.Header.home',
-    defaultMessage: 'Home',
+  searchPlaceholder: {
+    id: 'boilerplate.components.Header.searchPlaceholder',
+    defaultMessage: 'Search form will be here',
   },
-  features: {
-    id: 'boilerplate.components.Header.features',
-    defaultMessage: 'Features',
+  motto: {
+    id: 'boilerplate.components.Header.motto',
+    defaultMessage: 'The best motto will be here',
   },
 });

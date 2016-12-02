@@ -172,8 +172,7 @@
       "cross-env",
       "express",
       "ip",
-      "minimist",
-      "sanitize.css"
+      "minimist"
     ],
     "include": [
       "core-js",
@@ -184,6 +183,7 @@
   "dependencies": {
     "babel-polyfill": "6.16.0",
     "chalk": "1.1.3",
+    "classnames": "^2.2.5",
     "compression": "1.6.2",
     "cross-env": "3.1.3",
     "express": "4.14.0",
@@ -207,7 +207,6 @@
     "redux-immutable": "3.0.8",
     "redux-saga": "0.12.0",
     "reselect": "2.5.4",
-    "sanitize.css": "4.1.0",
     "sass-loader": "^4.0.2",
     "warning": "3.0.0",
     "whatwg-fetch": "1.0.0"

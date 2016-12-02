@@ -28,9 +28,6 @@ import configureStore from './store';
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
 
-// Import CSS reset
-import 'sanitize.css/sanitize.css';
-
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 const openSansObserver = new FontFaceObserver('Open Sans', {});

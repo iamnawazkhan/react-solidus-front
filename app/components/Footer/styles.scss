@@ -1,0 +1,22 @@
+@import 'styles/variables';
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20px;
+  background-color: $blue-grey200;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.upwork {
+  margin: 8px;
+  > svg {
+    fill: white;
+    height: 24px;
+    width: 24px;
+  }
+}

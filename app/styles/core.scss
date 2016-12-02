@@ -1,5 +1,11 @@
-:global {
-  .blueBack {
-    background-color: aqua;
-  }
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+body {
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
