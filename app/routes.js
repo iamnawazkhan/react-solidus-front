@@ -2,9 +2,7 @@
 // They are all wrapped in the App component, which should contain the navbar etc
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
-//  import { getAsyncInjectors } from './utils/asyncInjectors';
-
-import { ShopLayout } from 'layouts';
+import { getAsyncInjectors } from './utils/asyncInjectors';
 
 const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
@@ -14,10 +12,8 @@ const loadModule = (cb) => (componentModule) => {
   cb(null, componentModule.default);
 };
 
-export default function createRoutes() { // store
-  // create reusable async injectors using getAsyncInjectors factory
-
- // const { injectReducer, injectSagas } = getAsyncInjectors(store);
+export default function createRoutes(store) {
+  const { injectReducer, injectSagas } = getAsyncInjectors(store);
 
   return [{
     path: '/',
@@ -27,7 +23,24 @@ export default function createRoutes() { // store
       {
         path: 'shop',
         name: 'shop',
-        component: ShopLayout,
+        getComponent(nextState, cb) {
+          const importModules = Promise.all([
+            System.import('layouts/ShopLayout/reducer'),
+            System.import('layouts/ShopLayout/sagas'),
+            System.import('layouts/ShopLayout'),
+          ]);
+
+          const renderRoute = loadModule(cb);
+
+          importModules.then(([reducer, sagas, component]) => {
+            injectReducer('taxonomies', reducer.default);
+            injectSagas(sagas.default);
+
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+        },
       }, {
         path: '*',
         name: 'notfound',
@@ -38,23 +51,5 @@ export default function createRoutes() { // store
         },
       },
     ],
-    /*getComponent(nextState, cb) {
-      const importModules = Promise.all([
-        System.import('containers/HomePage/reducer'),
-        System.import('containers/HomePage/sagas'),
-        System.import('containers/HomePage'),
-      ]);
-
-      const renderRoute = loadModule(cb);
-
-      importModules.then(([reducer, sagas, component]) => {
-        injectReducer('home', reducer.default);
-        injectSagas(sagas.default);
-
-        renderRoute(component);
-      });
-
-      importModules.catch(errorLoading);
-    },*/
   }];
 }

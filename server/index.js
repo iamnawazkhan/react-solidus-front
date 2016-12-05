@@ -17,8 +17,10 @@ const proxy = httpProxy.createProxyServer({
   target: `http://${apiHost}:${apiPort}/api`,
 });
 
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
+// Proxy to API server
+app.use('/api', (req, res) => {
+  proxy.web(req, res);
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
@@ -28,11 +30,6 @@ setup(app, {
 
 // get the intended port number, use port 3000 if not provided
 const port = argv.port || process.env.PORT || 3000;
-
-// Proxy to API server
-app.use('/api', (req, res) => {
-  proxy.web(req, res);
-});
 
 // Start your app.
 app.listen(port, (err) => {

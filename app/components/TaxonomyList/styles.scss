@@ -1,0 +1,28 @@
+@import 'styles/variables.scss';
+
+.taxonomyList {
+  color: $dark-blue800;
+  width: 180px;
+  float: left;
+  list-style: none;
+  padding-left: 0;
+  background-color: white;
+  box-shadow: 0 0 5px 3px #EEEEEE;
+
+  .taxon {
+    padding: 7px 10px 7px 25px;
+    cursor: pointer;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+
+    &:active, &:hover {
+      color: white;
+      background-color: $dark-blue500;
+    }
+  }
+
+  .taxonomy {
+    padding: 12px 15px;
+    text-transform: uppercase;
+    cursor: default;
+  }
+}

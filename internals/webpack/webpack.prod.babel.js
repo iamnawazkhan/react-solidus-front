@@ -16,6 +16,10 @@ module.exports = require('./webpack.base.babel')({
     chunkFilename: '[name].[chunkhash].chunk.js',
   },
 
+  babelQuery: {
+    plugins: ['transform-decorators-legacy'],
+  },
+
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
