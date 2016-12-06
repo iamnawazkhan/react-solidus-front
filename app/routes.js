@@ -33,7 +33,7 @@ export default function createRoutes(store) {
           const renderRoute = loadModule(cb);
 
           importModules.then(([reducer, sagas, component]) => {
-            injectReducer('taxonomies', reducer.default);
+            injectReducer('taxons', reducer.default);
             injectSagas(sagas.default);
 
             renderRoute(component);

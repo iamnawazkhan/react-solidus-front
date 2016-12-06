@@ -1,18 +1,18 @@
 import {
-  GET_TAXONOMIES_REQUEST,
-  GET_TAXONOMIES_SUCCESS,
-  GET_TAXONOMIES_FAILED,
+  GET_TAXONS_REQUEST,
+  GET_TAXONS_SUCCESS,
+  GET_TAXONS_FAILED,
 } from './constants';
 
-export const getTaxonomies = () => ({
-  type: GET_TAXONOMIES_REQUEST,
+export const getTaxons = () => ({
+  type: GET_TAXONS_REQUEST,
 });
 
-export const taxonomiesLoaded = (body) => ({
-  type: GET_TAXONOMIES_SUCCESS,
-  payload: body.taxonomies,
+export const taxonsLoaded = (body) => ({
+  type: GET_TAXONS_SUCCESS,
+  payload: body.taxons,
 });
 
-export const taxonomiesLoadFailed = () => ({
-  type: GET_TAXONOMIES_FAILED,
+export const taxonsLoadFailed = () => ({
+  type: GET_TAXONS_FAILED,
 });

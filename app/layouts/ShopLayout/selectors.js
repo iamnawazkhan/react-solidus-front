@@ -7,16 +7,16 @@ const selectProducts = () => createSelector(
   (productsState) => productsState.get('products')
 );
 */
-const selectTaxonomiesState = () => (state) => state.get('taxonomies');
+const selectTaxonsState = () => (state) => state.get('taxons');
 
-const selectTaxonomies = () => createSelector(
-  selectTaxonomiesState(),
-  (taxonomiesState) => taxonomiesState.get('taxonomies'),
+const selectTaxons = () => createSelector(
+  selectTaxonsState(),
+  (taxonsState) => taxonsState.get('taxons'),
 );
 
 export {
   // selectProductsState,
   // selectProducts,
-  selectTaxonomiesState,
-  selectTaxonomies,
+  selectTaxonsState,
+  selectTaxons,
 };

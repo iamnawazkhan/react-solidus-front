@@ -1,13 +1,13 @@
 import { fromJS } from 'immutable';
 import {
-  GET_TAXONOMIES_SUCCESS,
+  GET_TAXONS_SUCCESS,
 } from './constants';
 
 function shopReducer(state = fromJS({}), { type, payload }) {
   switch (type) {
-    case GET_TAXONOMIES_SUCCESS:
+    case GET_TAXONS_SUCCESS:
       return state
-        .set('taxonomies', payload);
+        .set('taxons', payload);
     default:
       return state;
   }

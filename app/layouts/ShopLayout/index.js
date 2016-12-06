@@ -1,34 +1,34 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectTaxonomies } from './selectors';
-import { getTaxonomies } from './actions';
-import { TaxonomyList } from 'components';
+import { selectTaxons } from './selectors';
+import { getTaxons } from './actions';
+import { TaxonList } from 'components';
 
 @connect(() => createStructuredSelector({
-  taxonomies: selectTaxonomies(),
-}), { getTaxonomies })
+  taxons: selectTaxons(),
+}), { getTaxons })
 export default class ShopLayout extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
-    taxonomies: PropTypes.array,
-    getTaxonomies: PropTypes.func.isRequired,
+    taxons: PropTypes.array,
+    getTaxons: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    const { taxonomies } = this.props;
+    const { taxons } = this.props;
 
-    if (!taxonomies) {
-      this.props.getTaxonomies();
+    if (!taxons) {
+      this.props.getTaxons();
     }
   }
 
   render() {
-    const { children, taxonomies } = this.props;
+    const { children, taxons } = this.props;
 
     return (
       <div>
-        <TaxonomyList taxonomies={taxonomies} />
+        <TaxonList taxons={taxons} />
         <div>
           {children}
         </div>

@@ -9,18 +9,24 @@ const getTaxonomyTemplate = (taxonomy) => {
   ];
 };
 
-export const TaxonomyList = ({ taxonomies }) => (
+export const TaxonList = ({ taxons } /* , { location } */) => (
   <ul className={styles.taxonomyList}>
-    {taxonomies && taxonomies.length > 0 ?
-      taxonomies.map((taxonomy) => getTaxonomyTemplate(taxonomy))
+    {taxons && taxons.length > 0 ?
+      taxons.map((taxonomy) => getTaxonomyTemplate(taxonomy))
       :
-        <li>No filter existed</li>
+        <li className={styles.taxon}>No filter existed</li>
     }
   </ul>
 );
 
-TaxonomyList.propTypes = {
-  taxonomies: PropTypes.array,
+/*
+TaxonList.contextTypes = {
+  location: PropTypes.object,
+}
+*/
+
+TaxonList.propTypes = {
+  taxons: PropTypes.array,
 };
 
-export default TaxonomyList;
+export default TaxonList;

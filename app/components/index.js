@@ -1,3 +1,3 @@
 export Footer from './Footer';
 export Header from './Header';
-export TaxonomyList from './TaxonomyList';
+export TaxonList from './TaxonList';

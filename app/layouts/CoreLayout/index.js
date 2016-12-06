@@ -1,22 +1,35 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { Header, Footer } from 'components';
 import styles from './styles.scss';
 
 import 'styles/core.scss';
 import 'styles/utils.scss';
 
-export const CoreLayout = ({ children }) => (
-  <div className={styles.globalContainer}>
-    <Header />
-    <div className={`container-fluid ${styles.content}`}>
-      {children}
-    </div>
-    <Footer />
-  </div>
-);
+export default class CoreLayout extends Component {
+  static propTypes = {
+    children: PropTypes.element.isRequired,
+    location: PropTypes.object.isRequired,
+  };
 
-CoreLayout.propTypes = {
-  children: PropTypes.element.isRequired,
-};
+  static childContextTypes = {
+    location: PropTypes.object,
+  };
 
-export default CoreLayout;
+  getChildContext() {
+    return {
+      location: this.props.location,
+    };
+  }
+
+  render() {
+    return (
+      <div className={styles.globalContainer}>
+        <Header />
+        <div className={`container-fluid ${styles.content}`}>
+          {this.props.children}
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+}

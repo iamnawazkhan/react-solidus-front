@@ -2,29 +2,29 @@ import request from 'utils/request';
 import { takeLatest } from 'redux-saga';
 import { take, call, put, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { GET_TAXONOMIES_REQUEST } from './constants';
-import { taxonomiesLoaded, taxonomiesLoadFailed } from './actions';
+import { GET_TAXONS_REQUEST } from './constants';
+import { taxonsLoaded, taxonsLoadFailed } from './actions';
 
-export function* getTaxonomies() {
+export function* getTaxons() {
   try {
-    const taxonomies = yield call(request, '/api/taxonomies');
-    yield put(taxonomiesLoaded(taxonomies));
+    const taxons = yield call(request, '/api/taxons');
+    yield put(taxonsLoaded(taxons));
   } catch (err) {
-    yield put(taxonomiesLoadFailed(err));
+    yield put(taxonsLoadFailed(err));
   }
 }
 
-export function* getTaxonomiesWatcher() {
-  yield fork(takeLatest, GET_TAXONOMIES_REQUEST, getTaxonomies);
+export function* getTaxonsWatcher() {
+  yield fork(takeLatest, GET_TAXONS_REQUEST, getTaxons);
 }
 
-export function* getTaxonomiesManager() {
-  const watcher = yield fork(getTaxonomiesWatcher);
+export function* getTaxonsManager() {
+  const watcher = yield fork(getTaxonsWatcher);
 
   yield take(LOCATION_CHANGE);
   yield cancel(watcher);
 }
 
 export default [
-  getTaxonomiesManager,
+  getTaxonsManager,
 ];
