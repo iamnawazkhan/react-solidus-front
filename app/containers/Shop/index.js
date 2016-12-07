@@ -54,7 +54,7 @@ export default class Shop extends Component {
 
   selectTaxon = (taxon) => {
     this.setState({ currentTaxon: taxon });
-    this.props.getTaxonProducts(taxon.id);
+    return taxon ? this.props.getTaxonProducts(taxon.id) : this.props.getProducts();
   };
 
   render() {

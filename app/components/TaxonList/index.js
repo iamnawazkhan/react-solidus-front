@@ -31,8 +31,13 @@ export default class TaxonList extends Component {
   };
 
   chooseTaxon = (taxon) => {
-    this.context.router.push(`/shop/${taxon.permalink}`);
-    this.props.onTaxonSelect(taxon);
+    if (taxon) {
+      this.context.router.push(`/shop/${taxon.permalink}`);
+      this.props.onTaxonSelect(taxon);
+      return;
+    }
+    this.context.router.push('/shop');
+    this.props.onTaxonSelect();
   };
 
   renderTaxon = (taxon, level) => {
@@ -41,6 +46,7 @@ export default class TaxonList extends Component {
         <li
           key={taxon.id}
           className={classNames(styles.taxon, styles.clickable)}
+          onMouseEnter={() => this.setState({ levels: this.state.levels.slice(0, level) })}
           onClick={() => this.chooseTaxon(taxon)}
         >{taxon.name}</li>
       );
@@ -61,7 +67,15 @@ export default class TaxonList extends Component {
       <ul key="initialList" className={styles.taxonomyList} onMouseEnter={this.onListMouseEnter} onMouseLeave={this.onListMouseLeave}>
         {taxons && taxons.length > 0
           ?
-          taxons.filter((taxon) => !taxon.parent_id).map((taxon) => this.renderTaxon(taxon, 0))
+          [
+            <li
+              key="home"
+              className={classNames(styles.taxon, styles.clickable)}
+              onClick={() => this.chooseTaxon()}
+              onMouseEnter={() => this.setState({ levels: [] })}
+            >Home</li>,
+            taxons.filter((taxon) => !taxon.parent_id).map((taxon) => this.renderTaxon(taxon, 0)),
+          ]
           :
             <li className={styles.taxon}>No filter existed</li>
         }
