@@ -4,8 +4,6 @@ import { createStructuredSelector } from 'reselect';
 import { selectTaxons, selectProducts } from './selectors';
 import { getTaxons, getProducts, getTaxonProducts } from './actions';
 import { TaxonList, ProductList } from 'components';
-import isEqual from 'lodash/isEqual';
-import get from 'lodash/get';
 
 @connect(() => createStructuredSelector({
   taxons: selectTaxons(),
@@ -24,30 +22,30 @@ export default class Shop extends Component {
   state = {};
 
   componentDidMount() {
-    const { taxons, routeParams } = this.props;
+    const { taxons, routeParams: { splat } } = this.props;
 
     if (!taxons) {
       this.props.getTaxons();
     }
 
-    if (!routeParams) {
+    if (!splat) {
       this.props.getProducts();
     } else if (taxons) {
-      this.selectTaxon(taxons.find((taxon) => taxon.permalink === routeParams.splat));
+      this.selectTaxon(taxons.find((taxon) => taxon.permalink === splat));
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { routeParams } = this.props;
+    const { routeParams: { splat } } = this.props;
 
-    if (!(nextProps.taxons && (nextProps.routeParams || routeParams))) return;
+    if (!(nextProps.taxons && (nextProps.routeParams.splat || splat))) return;
 
-    if (routeParams && !nextProps.routeParams) {
+    if (splat && !nextProps.routeParams.splat) {
       this.props.getProducts();
       return;
     }
 
-    if (!isEqual(nextProps.routeParams, routeParams) || (get(nextProps, 'routeParams.splat') && !this.state.currentTaxon)) {
+    if (nextProps.routeParams.splat !== splat || (nextProps.routeParams.splat && !this.state.currentTaxon)) {
       this.selectTaxon(nextProps.taxons.find((taxon) => taxon.permalink === nextProps.routeParams.splat));
     }
   }
