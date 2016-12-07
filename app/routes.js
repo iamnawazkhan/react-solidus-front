@@ -21,19 +21,19 @@ export default function createRoutes(store) {
     indexRoute: { onEnter: (nextState, replace) => replace('/shop') },
     childRoutes: [
       {
-        path: 'shop',
+        path: 'shop(/**)',
         name: 'shop',
         getComponent(nextState, cb) {
           const importModules = Promise.all([
-            System.import('layouts/ShopLayout/reducer'),
-            System.import('layouts/ShopLayout/sagas'),
-            System.import('layouts/ShopLayout'),
+            System.import('containers/Shop/reducer'),
+            System.import('containers/Shop/sagas'),
+            System.import('containers/Shop'),
           ]);
 
           const renderRoute = loadModule(cb);
 
           importModules.then(([reducer, sagas, component]) => {
-            injectReducer('taxons', reducer.default);
+            injectReducer('shop', reducer.default);
             injectSagas(sagas.default);
 
             renderRoute(component);

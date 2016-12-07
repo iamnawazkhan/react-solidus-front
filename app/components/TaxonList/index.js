@@ -1,59 +1,92 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './styles.scss';
-
-const getTaxonomyTemplate = (taxonomy) => {
-  const name = taxonomy.name;
-  return [
-    <li key={name} className={styles.taxonomy}>{name}</li>,
-    taxonomy.root.taxons.map((taxon) => (<li key={`{name} ${taxon.id}`} className={styles.taxon}>{taxon.name}</li>)),
-  ];
-};
-
+import classNames from 'classnames';
 
 export default class TaxonList extends Component {
   static propTypes = {
     taxons: PropTypes.array,
+    onTaxonSelect: PropTypes.func.isRequired,
   };
 
-  /*
   static contextTypes = {
-   location: PropTypes.object,
-  }
-  */
+    router: PropTypes.object.isRequired,
+  };
 
   state = {
-    selectStack: [],
+    levels: [],
   };
 
-  renderTaxonList = () => this.selectStack.length > 0 ? this.renderSelectedTaxonList() : this.renderInitialTaxonList();
+  onSelect = (taxon, level) => {
+    this.setState({
+      levels: this.state.levels.slice(0, level).concat([taxon.taxons]),
+    });
+  };
 
-  renderInitialTaxonList = () => this.props.taxons.filter(taxon => !taxon.parent_id).map(taxon => <li key={taxon.id} className={styles.taxon}>{taxon.name}</li>);
+  onListMouseEnter = () => {
+    clearTimeout(this.hideTimeout);
+  };
 
-  renderSelectedTaxonList = () => {
-    const {taxons} = this.props;
-    const {selectedStack} = this.state;
-    const result = [];
+  onListMouseLeave = () => {
+    this.hideTimeout = setTimeout(() => this.setState({ levels: [] }), 1000);
+  };
 
-    if (selectedStack.length > 1) {
-      result.push(<li key='reset' className={styles.taxon} onClick={() => this.setState({selectedStack: []})}>Reset</li>)
+  chooseTaxon = (taxon) => {
+    this.context.router.push(`/shop/${taxon.permalink}`);
+    this.props.onTaxonSelect(taxon);
+  };
+
+  renderTaxon = (taxon, level) => {
+    if (taxon.taxons.length === 0) {
+      return (
+        <li
+          key={taxon.id}
+          className={classNames(styles.taxon, styles.clickable)}
+          onClick={() => this.chooseTaxon(taxon)}
+        >{taxon.name}</li>
+      );
     }
 
-    return result;
+    return (
+      <li
+        key={taxon.id}
+        className={styles.taxon}
+        onMouseEnter={() => this.onSelect(taxon, level)}
+      >{taxon.name}</li>
+    );
   };
 
-  render () {
+  renderMainTaxonList = () => {
     const { taxons } = this.props;
-
     return (
-      <ul className={styles.taxonomyList}>
-        {taxons && taxons.length > 0 ?
-          this.renderTaxonList()
+      <ul key="initialList" className={styles.taxonomyList} onMouseEnter={this.onListMouseEnter} onMouseLeave={this.onListMouseLeave}>
+        {taxons && taxons.length > 0
+          ?
+          taxons.filter((taxon) => !taxon.parent_id).map((taxon) => this.renderTaxon(taxon, 0))
           :
-          <li className={styles.taxon}>No filter existed</li>
+            <li className={styles.taxon}>No filter existed</li>
         }
       </ul>
-    )
+    );
+  };
+
+  renderAdditionalTaxonLists = () => this.state.levels.map((level, index) => (
+    <ul
+      key={`additionalList#${index}`}
+      className={classNames(styles.taxonomyList, styles.deepList)}
+      style={{ left: `${180 * (index + 1)}px` }}
+      onMouseEnter={this.onListMouseEnter}
+      onMouseLeave={this.onListMouseLeave}
+    >
+      {level.map((taxon) => this.renderTaxon(taxon, index + 1))}
+    </ul>
+  ));
+
+  render() {
+    return (
+      <div>
+        {this.renderMainTaxonList()}
+        {this.renderAdditionalTaxonLists()}
+      </div>
+    );
   }
 }
-
-
