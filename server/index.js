@@ -18,7 +18,7 @@ const proxy = httpProxy.createProxyServer({
 });
 
 // Proxy to API server
-app.use('/api', (req, res) => {
+app.use(/\/(api|spree)/, (req, res) => {
   proxy.web(req, res);
 });
 

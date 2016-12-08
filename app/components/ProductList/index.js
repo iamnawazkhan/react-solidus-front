@@ -1,10 +1,17 @@
 import React, { PropTypes } from 'react';
-// import styles from './styles.scss';
+import { Product } from 'components';
 
 export const ProductList = ({ products }) => (
-  <div>
-    {products && products.toString()}
-  </div>
+  products && products.length > 0
+    ?
+      <div className="container-fluid" style={{ marginLeft: '180px' }}>
+        <div className="row">
+          {products.map((product) => <Product product={product} key={product.id} />)}
+        </div>
+      </div>
+    :
+      <div style={{ textAlign: 'center' }}>No products</div>
+
 );
 
 ProductList.propTypes = {

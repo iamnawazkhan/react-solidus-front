@@ -1,0 +1,32 @@
+@import "styles/variables";
+
+.product {
+  width: 240px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 0 5px 3px #EEEEEE;
+  > img {
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+@media (min-width: $lg) {
+  .productWrapper:nth-child(4n+5) {
+    clear: left;
+  }
+}
+
+@media (min-width: $md) and (max-width: $lg - 1) {
+  .productWrapper:nth-child(3n+4) {
+    clear: left;
+  }
+}
+
+@media (min-width: $sm) and (max-width: $md - 1) {
+  .productWrapper:nth-child(2n+3) {
+    clear: left;
+  }
+}
