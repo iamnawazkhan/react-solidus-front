@@ -1,7 +1,4 @@
 import {
-  GET_TAXONS_REQUEST,
-  GET_TAXONS_SUCCESS,
-  GET_TAXONS_FAILED,
   GET_PRODUCTS_REQUEST,
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_FAILED,
@@ -9,19 +6,6 @@ import {
   GET_TAXON_PRODUCTS_FAILED,
   GET_TAXON_PRODUCTS_SUCCESS,
 } from './constants';
-
-export const getTaxons = () => ({
-  type: GET_TAXONS_REQUEST,
-});
-
-export const taxonsLoaded = (body) => ({
-  type: GET_TAXONS_SUCCESS,
-  payload: body.taxons,
-});
-
-export const taxonsLoadFailed = () => ({
-  type: GET_TAXONS_FAILED,
-});
 
 export const getTaxonProducts = (id) => ({
   type: GET_TAXON_PRODUCTS_REQUEST,

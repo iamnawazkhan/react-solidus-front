@@ -2,8 +2,9 @@ import request from 'utils/request';
 import { takeLatest } from 'redux-saga';
 import { take, call, put, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { GET_TAXONS_REQUEST, GET_PRODUCTS_REQUEST, GET_TAXON_PRODUCTS_REQUEST } from './constants';
-import { taxonsLoaded, taxonsLoadFailed, productsLoaded, productsLoadFailed, taxonProductsLoaded, taxonProductsLoadFailed } from './actions';
+import { GET_PRODUCTS_REQUEST, GET_TAXON_PRODUCTS_REQUEST } from './constants';
+import { taxonsLoaded, taxonsLoadFailed, GET_TAXONS_REQUEST } from 'reducers/taxons';
+import { productsLoaded, productsLoadFailed, taxonProductsLoaded, taxonProductsLoadFailed } from './actions';
 
 export function* getTaxons() {
   try {

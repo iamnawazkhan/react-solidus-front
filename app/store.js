@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
-import createReducer from './reducers';
+import createReducer from './reducers/index';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -46,7 +46,7 @@ export default function configureStore(initialState = {}, history) {
   /* istanbul ignore next */
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      System.import('./reducers').then((reducerModule) => {
+      System.import('./reducers/index').then((reducerModule) => {
         const createReducers = reducerModule.default;
         const nextReducers = createReducers(store.asyncReducers);
 

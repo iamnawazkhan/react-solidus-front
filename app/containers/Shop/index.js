@@ -1,9 +1,12 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectTaxons, selectProducts } from './selectors';
-import { getTaxons, getProducts, getTaxonProducts } from './actions';
+import { selectProducts } from './selectors';
+import { selectTaxons } from 'selectors/taxons';
+import { getProducts, getTaxonProducts } from './actions';
+import { getTaxons } from 'reducers/taxons';
 import { TaxonList, ProductList } from 'components';
+import styles from './styles.scss';
 
 @connect(() => createStructuredSelector({
   taxons: selectTaxons(),
@@ -60,7 +63,10 @@ export default class Shop extends Component {
 
     return (
       <div>
-        <TaxonList taxons={taxons} onTaxonSelect={this.selectTaxon} />
+        <div className={styles.leftSidebar}>
+          <TaxonList taxons={taxons} onTaxonSelect={this.selectTaxon} />
+          <div>Properties</div>
+        </div>
         <ProductList products={products} />
       </div>
     );
