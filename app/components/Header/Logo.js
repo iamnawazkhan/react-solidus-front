@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import styles from './styles.scss';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-export default () => (
-  <div className="relative">
+export const Logo = (undefined, { router }) => (
+  <div className="relative clickable" onClick={() => router.push('/')}>
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -40,3 +40,9 @@ export default () => (
     <div className={styles.brandMotto}><FormattedMessage {...messages.motto} /></div>
   </div>
 );
+
+Logo.contextTypes = {
+  router: PropTypes.object.isRequired,
+};
+
+export default Logo;
