@@ -6,8 +6,10 @@ import HeaderButtons from './HeaderButtons';
 
 export default () => (
   <header className={styles.header}>
-    <Logo />
-    <HeaderSearch />
-    <HeaderButtons />
+    <div className="container">
+      <Logo />
+      <HeaderSearch />
+      <HeaderButtons />
+    </div>
   </header>
 );

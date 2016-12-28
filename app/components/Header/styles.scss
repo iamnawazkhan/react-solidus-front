@@ -6,8 +6,6 @@
   left: 0;
   right: 0;
   padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
   height: 64px;
   background-color: $cyan500;
   color: white;
@@ -15,20 +13,30 @@
   z-index: 5;
 
   > div {
-    margin: auto 0;
-    display: inline-block;
-  }
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
 
-  .brandName {
-    vertical-align: super;
-    display: inline-block;
-    font-size: 24px;
-    margin-left: 5px;
-  }
+    &:before, &:after {
+      content: none;
+    }
 
-  .brandMotto {
-    position: absolute;
-    font-size: 13px;
-    bottom: -13px;
+    > div {
+      margin: auto 0;
+      display: inline-block;
+    }
+
+    .brandName {
+      vertical-align: super;
+      display: inline-block;
+      font-size: 24px;
+      margin-left: 5px;
+    }
+
+    .brandMotto {
+      position: absolute;
+      font-size: 13px;
+      bottom: -13px;
+    }
   }
 }

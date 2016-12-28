@@ -4,9 +4,16 @@
   padding: 10px 20px;
   background-color: $blue-grey400;
   color: white;
-  display: flex;
-  justify-content: space-between;
   box-shadow: 0 0 5px 3px rgba(158, 158, 158, 0.4);
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+
+    &:before, &:after {
+      content: none;
+    }
+  }
 }
 
 .upwork {

@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { Header, Footer } from 'components';
 import styles from './styles.scss';
+import classnames from 'classnames';
 
 import 'styles/core.scss';
 import 'styles/utils.scss';
@@ -25,7 +26,7 @@ export default class CoreLayout extends Component {
     return (
       <div className={styles.globalContainer}>
         <Header />
-        <div className={`container-fluid ${styles.content}`}>
+        <div className={classnames('container', styles.content)}>
           {this.props.children}
         </div>
         <Footer />
