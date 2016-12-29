@@ -30,17 +30,19 @@ export default class Product extends Component {
   }
 
   renderProperties = (properties) => (
-    <div className="paper">
-      <table style={{ width: '100%' }}>
-        <tbody>
-          {properties.map((prop) => (
-            <tr key={prop.id} className={styles.property}>
-              <td className={styles.name}>{prop.property_name}:</td>
-              <td>{prop.value}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className={styles.propListWrapper}>
+      <div className="paper">
+        <table>
+          <tbody>
+            {properties.map((prop) => (
+              <tr key={prop.id} className={styles.property}>
+                <td className={styles.name}>{prop.property_name}:</td>
+                <td>{prop.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 
@@ -49,22 +51,24 @@ export default class Product extends Component {
   };
 
   renderProduct = () => {
-    const { product } = this.props;
+    const { product, params: { variantId } } = this.props;
+
+    const variantItem = variantId ? product.variants.find((variant) => variant.id === variantId) : product.master;
 
     return (
-      <div className="container">
-        <h2 className={styles.title}>{product.name}</h2>
+      <div>
+        <h2 className={styles.title}>{variantItem.name}</h2>
         <div className="row">
-          <div className="col-sm-12 col-md-6">
-            {/* <Gallery images={product.master.images} /> */}
+          <div className="col-xs-12 col-md-6">
+            {/* <Gallery images={variantItem.images||} /> */}
             {product.product_properties.length > 0 && this.renderProperties(product.product_properties)}
           </div>
-          <div className="col-sm-12 col-md-6">
+          <div className="col-xs-12 col-md-6">
             <div>{product.description}</div>
             <div className="row">
               {product.has_variants && this.renderVariants(product.variants)}
               <div className="col-sm-12 col-md-6">
-                {product.display_price}
+                {variantItem.display_price}
               </div>
             </div>
             {}

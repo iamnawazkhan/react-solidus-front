@@ -42,7 +42,7 @@ export default function createRoutes(store) {
           importModules.catch(errorLoading);
         },
       }, {
-        path: 'product/:id',
+        path: 'product/:id(/variantId)',
         name: 'product',
         getComponent(nextState, cb) {
           const importModules = Promise.all([
