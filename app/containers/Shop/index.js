@@ -7,6 +7,7 @@ import { getProducts, getTaxonProducts } from './actions';
 import { getTaxons } from 'reducers/taxons';
 import { TaxonList, ProductList } from 'components';
 import styles from './styles.scss';
+import classnames from 'classnames';
 
 @connect(() => createStructuredSelector({
   taxons: selectTaxons(),
@@ -54,18 +55,48 @@ export default class Shop extends Component {
   }
 
   selectTaxon = (taxon) => {
-    this.setState({ currentTaxon: taxon });
+    this.setState({
+      ...this.state,
+      currentTaxon: taxon,
+    });
     return taxon ? this.props.getTaxonProducts(taxon.id) : this.props.getProducts();
   };
 
+  openDrawer = () => this.setState({
+    ...this.state,
+    showDrawer: true,
+  });
+
+  closeDrawer = () => this.setState({
+    ...this.state,
+    showDrawer: false,
+  });
+
+  renderContent = () => {
+    const { taxons } = this.props;
+
+    return [
+      <TaxonList key="taxons" taxons={taxons} onTaxonSelect={this.selectTaxon} />,
+      <div key="properties">Properties</div>,
+    ];
+  };
+
   render() {
-    const { products, taxons } = this.props;
+    const { products } = this.props;
 
     return (
-      <div>
+      <div onClick={this.closeDrawer}>
         <div className={styles.leftSidebar}>
-          <TaxonList taxons={taxons} onTaxonSelect={this.selectTaxon} />
-          <div>Properties</div>
+          <div className="hidden-xs hidden-sm">
+            {this.renderContent()}
+          </div>
+          <div className="hidden-md hidden-lg" onClick={(e) => e.stopPropagation()}>
+            <i className={classnames('fa fa-bars', { [styles.hide]: this.state.showDrawer })} onClick={this.openDrawer} />
+            <div className={classnames(styles.drawer, { hidden: !this.state.showDrawer })}>
+              <i className={classnames('fa fa-times', styles.close)} onClick={this.closeDrawer} />
+              {this.renderContent()}
+            </div>
+          </div>
         </div>
         <ProductList products={products} />
       </div>

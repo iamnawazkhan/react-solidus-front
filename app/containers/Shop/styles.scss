@@ -1,5 +1,20 @@
+@import "styles/variables";
+
 .leftSidebar {
   margin-right: 10px;
-  width: 160px;
   float: left;
+}
+
+.drawer {
+  position: absolute;
+  left: 0;
+  top: 80px;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.close {
+  color: $blue-grey200;
 }
