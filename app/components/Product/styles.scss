@@ -1,17 +1,42 @@
 @import "styles/variables";
+@import "styles/mixins";
 
 .product {
-  width: 240px;
-  margin: 0 auto;
-  margin-bottom: 20px;
+  width: 260px;
+  margin: 0 10px 20px 10px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 2px;
   background-color: white;
-  box-shadow: 0 0 5px 3px #EEEEEE;
   cursor: pointer;
+  @include box-shadow();
 
-  &:hover {
-    box-shadow: 0 0 8px 5px #EEEEEE;
+  .name {
+    min-height: 40px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    align-items: center;
+
+    > div:first-child {
+      font-size: 16px;
+    }
+
+    :global {
+      .fa-heart-o:hover {
+        color: $red500;
+      }
+
+      .fa-cart-plus {
+        color: $cyan700;
+      }
+    }
   }
 
   > img {
