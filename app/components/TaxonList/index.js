@@ -87,7 +87,7 @@ export default class TaxonList extends Component {
     <ul
       key={`additionalList#${index}`}
       className={classNames(styles.taxonomyList, styles.deepList)}
-      style={{ left: `${160 * (index + 1)}px` }}
+      style={{ left: `${100 * (index + 1)}%` }}
       onMouseEnter={this.onListMouseEnter}
       onMouseLeave={this.onListMouseLeave}
     >
