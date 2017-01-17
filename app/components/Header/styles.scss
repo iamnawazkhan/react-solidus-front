@@ -1,4 +1,5 @@
 @import 'styles/variables';
+@import 'styles/mixins';
 
 .header {
   position: fixed;
@@ -9,8 +10,8 @@
   height: 64px;
   background-color: $cyan500;
   color: white;
-  box-shadow: 0 0 5px 3px #EEEEEE;
   z-index: 5;
+  @include card-shadow();
 
   > div {
     display: flex;

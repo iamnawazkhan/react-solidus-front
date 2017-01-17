@@ -5,3 +5,4 @@ export ProductList from './ProductList';
 export Product from './Product';
 export Spinner from './Spinner';
 export Tooltip from './Tooltip';
+export Gallery from './Gallery';

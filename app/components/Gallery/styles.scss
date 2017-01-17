@@ -1,0 +1,92 @@
+@import "styles/mixins";
+
+$pagingSize: 48px;
+
+.modal {
+
+  :global {
+
+    .modal-dialog {
+
+      .modal-content {
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+      }
+    }
+  }
+
+  .slider {
+
+    .carouselImgWrapper > img {
+      max-height: none; // TODO
+      cursor: default;
+      box-shadow: none;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    :global {
+
+      .slick-prev:before {
+        font-family: FontAwesome;
+        content: "\f053";
+      }
+
+        .slick-next:before {
+        font-family: FontAwesome;
+        content: "\f054";
+      }
+
+      .slick-dots li {
+        box-shadow: none;
+
+        &:hover {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+.slider {
+  margin-bottom: calc(#{$pagingSize} + 15px);
+
+  .carouselImgWrapper {
+    display: flex !important;
+    align-items: center;
+    flex-direction: column;
+
+    > img {
+      max-height: 250px;
+      margin: 10px 10px 15px;
+      cursor: pointer;
+      @include box-shadow();
+      @include small-border-radius();
+
+      &.noPicture {
+        pointer-events: none;
+      }
+    }
+  }
+
+  :global {
+    .slick-dots {
+      top: 100%;
+
+      li {
+        width: initial;
+        height: initial;
+        max-height: $pagingSize;
+        max-width: $pagingSize;
+        @include box-shadow();
+
+        img {
+          @include small-border-radius();
+        }
+      }
+    }
+  }
+}

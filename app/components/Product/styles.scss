@@ -5,10 +5,10 @@
   width: 260px;
   margin: 0 10px 20px 10px;
   padding: 10px;
-  border-radius: 2px;
   background-color: white;
   cursor: pointer;
   @include box-shadow();
+  @include small-border-radius();
 
   .name {
     min-height: 40px;
@@ -42,23 +42,5 @@
   > img {
     margin: 0 auto;
     display: block;
-  }
-}
-
-@media (min-width: $lg) {
-  .productWrapper:nth-child(4n+5) {
-    clear: left;
-  }
-}
-
-@media (min-width: $md) and (max-width: $lg - 1) {
-  .productWrapper:nth-child(3n+4) {
-    clear: left;
-  }
-}
-
-@media (min-width: $sm) and (max-width: $md - 1) {
-  .productWrapper:nth-child(2n+3) {
-    clear: left;
   }
 }

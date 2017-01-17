@@ -1,3 +1,5 @@
+@import "styles/mixins";
+
 :global {
   .icon-link {
     color: white;
@@ -25,7 +27,7 @@
   .paper {
     padding: 10px;
     background-color: white;
-    box-shadow: 0 0 5px 3px #EEEEEE;
+    @include card-shadow();
   }
 
   .flexList {

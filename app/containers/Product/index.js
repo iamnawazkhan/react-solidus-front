@@ -5,7 +5,7 @@ import { selectProduct } from './selectors';
 import { selectTaxons } from 'selectors/taxons';
 import { getProduct } from './actions';
 import { getTaxons } from 'reducers/taxons';
-import { Spinner } from 'components';
+import { Spinner, Gallery } from 'components';
 import styles from './styles.scss';
 
 
@@ -60,7 +60,7 @@ export default class Product extends Component {
         <h2 className={styles.title}>{variantItem.name}</h2>
         <div className="row">
           <div className="col-xs-12 col-md-6">
-            {/* <Gallery images={variantItem.images||} /> */}
+            <Gallery images={variantItem.images} />
             {product.product_properties.length > 0 && this.renderProperties(product.product_properties)}
           </div>
           <div className="col-xs-12 col-md-6">

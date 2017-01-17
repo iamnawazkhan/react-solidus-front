@@ -2,6 +2,8 @@ import React, { PropTypes, Component } from 'react';
 import styles from './styles.scss';
 import classNames from 'classnames';
 
+const timeout = 1000;
+
 export default class TaxonList extends Component {
   static propTypes = {
     taxons: PropTypes.array,
@@ -17,17 +19,19 @@ export default class TaxonList extends Component {
   };
 
   onSelect = (taxon, level) => {
+    this.clearTimeout();
     this.setState({
       levels: this.state.levels.slice(0, level).concat([taxon.taxons]),
     });
   };
 
-  onListMouseEnter = () => {
-    clearTimeout(this.hideTimeout);
+  onListMouseLeave = () => {
+    this.clearTimeout();
+    this.hideTimeout = setTimeout(() => this.setState({ levels: [] }), timeout);
   };
 
-  onListMouseLeave = () => {
-    this.hideTimeout = setTimeout(() => this.setState({ levels: [] }), 1000);
+  clearTimeout = () => {
+    clearTimeout(this.hideTimeout);
   };
 
   chooseTaxon = (taxon) => {
@@ -40,13 +44,18 @@ export default class TaxonList extends Component {
     this.props.onTaxonSelect();
   };
 
+  hideOddLists = (level) => {
+    this.clearTimeout();
+    this.hideTimeout = setTimeout(() => this.setState({ levels: this.state.levels.slice(0, level) }), timeout);
+  };
+
   renderTaxon = (taxon, level) => {
     if (taxon.taxons.length === 0) {
       return (
         <li
           key={taxon.id}
           className={classNames(styles.taxon, styles.clickable)}
-          onMouseEnter={() => this.setState({ levels: this.state.levels.slice(0, level) })}
+          onMouseEnter={() => this.hideOddLists(level)}
           onClick={() => this.chooseTaxon(taxon)}
         >{taxon.name}</li>
       );
@@ -64,7 +73,7 @@ export default class TaxonList extends Component {
   renderMainTaxonList = () => {
     const { taxons } = this.props;
     return (
-      <ul key="initialList" className={styles.taxonomyList} onMouseEnter={this.onListMouseEnter} onMouseLeave={this.onListMouseLeave}>
+      <ul key="initialList" className={styles.taxonomyList} onMouseEnter={this.clearTimeout} onMouseLeave={this.onListMouseLeave}>
         {taxons && taxons.length > 0
           ?
           [
@@ -72,7 +81,7 @@ export default class TaxonList extends Component {
               key="home"
               className={classNames(styles.taxon, styles.clickable)}
               onClick={() => this.chooseTaxon()}
-              onMouseEnter={() => this.setState({ levels: [] })}
+              onMouseEnter={() => this.hideOddLists(0)}
             >Home</li>,
             taxons.filter((taxon) => !taxon.parent_id).map((taxon) => this.renderTaxon(taxon, 0)),
           ]
@@ -88,7 +97,7 @@ export default class TaxonList extends Component {
       key={`additionalList#${index}`}
       className={classNames(styles.taxonomyList, styles.deepList)}
       style={{ left: `${100 * (index + 1)}%` }}
-      onMouseEnter={this.onListMouseEnter}
+      onMouseEnter={this.clearTimeout}
       onMouseLeave={this.onListMouseLeave}
     >
       {level.map((taxon) => this.renderTaxon(taxon, index + 1))}
@@ -97,7 +106,7 @@ export default class TaxonList extends Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.taxonomyListContainer}>
         {this.renderMainTaxonList()}
         {this.renderAdditionalTaxonLists()}
       </div>
