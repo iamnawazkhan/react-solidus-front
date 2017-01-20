@@ -6,8 +6,13 @@ $dark-blue500: #607D8B;
 $grey200: #EEEEEE;
 $red500: #F44336;
 $cyan700: #0097A7;
+$deep-orange500: #FF5722;
+$default: #2c3e50;
 
 // widths
-$lg: 1200px;
-$md: 992px;
-$sm: 768px;
+$lg-min: 1200px;
+$md-max: 1199px;
+$md-min: 992px;
+$sm-max: 991px;
+$sm-min: 768px;
+$xs-max: 767px;

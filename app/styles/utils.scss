@@ -1,6 +1,12 @@
 @import "styles/mixins";
 
 :global {
+
+  .icon-big {
+    font-size: 24px;
+    margin: 8px;
+  }
+
   .icon-link {
     color: white;
     text-decoration: none;
@@ -12,6 +18,10 @@
     }
   }
 
+  .icon-before-text {
+    margin-right: 5px;
+  }
+
   .clickable {
     cursor: pointer;
   }
@@ -20,14 +30,11 @@
     position: relative;
   }
 
-  .text-centralize {
-    text-align: center;
-  }
-
   .paper {
     padding: 10px;
     background-color: white;
     @include card-shadow();
+    @include small-border-radius();
   }
 
   .flexList {

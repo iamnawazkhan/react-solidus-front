@@ -10,10 +10,10 @@ export const Product = ({ product }, { router }) => (
       <div>{product.display_price}</div>
       <div>
         <Tooltip tooltip="Add to favorites">
-          <i className="fa fa-heart-o" />
+          <i className="fa fa-heart-o icon-big" />
         </Tooltip>
         <Tooltip tooltip="Add to card">
-          <i className="fa fa-cart-plus" />
+          <i className="fa fa-cart-plus icon-big" />
         </Tooltip>
       </div>
     </div>

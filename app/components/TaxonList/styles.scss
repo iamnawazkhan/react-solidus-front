@@ -15,7 +15,7 @@
     z-index: 4;
     @include card-shadow();
 
-    @media all and (max-width: $md - 1) {
+    @media all and (max-width: $sm-max) {
       width: 110px;
 
       .taxon {

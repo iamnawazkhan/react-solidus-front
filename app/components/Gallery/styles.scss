@@ -1,4 +1,5 @@
 @import "styles/mixins";
+@import "styles/variables";
 
 $pagingSize: 48px;
 
@@ -83,8 +84,13 @@ $pagingSize: 48px;
         max-width: $pagingSize;
         @include box-shadow();
 
+        &.slick-active img {
+          border-color: $deep-orange500;
+        }
+
         img {
           @include small-border-radius();
+          border: 2px solid transparent;
         }
       }
     }

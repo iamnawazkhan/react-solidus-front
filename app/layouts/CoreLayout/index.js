@@ -5,6 +5,7 @@ import classnames from 'classnames';
 
 import 'styles/core.scss';
 import 'styles/utils.scss';
+import 'styles/bootstrap-overrides.scss';
 
 export default class CoreLayout extends Component {
   static propTypes = {

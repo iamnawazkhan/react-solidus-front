@@ -1,7 +1,7 @@
 @import "styles/variables";
 
-.title {
-  text-align: center;
+.price {
+  margin-bottom: 10px;
 }
 
 .property .name {
@@ -12,4 +12,55 @@
 .propListWrapper {
   display: flex;
   justify-content: center;
+}
+
+.flexWrapper {
+  display: flex;
+  margin: 20px 0;
+
+  :global {
+
+    .paper {
+      margin-right: 20px;
+      padding: 0;
+
+      .nav-pills > li {
+        margin-top: 0;
+
+        &:first-child > a {
+          border-radius: 3px 3px 0 0;
+        }
+
+        &:last-child > a {
+          border-radius: 0 0 3px 3px;
+        }
+
+        > a {
+          border-radius: 0;
+          color: $cyan700;
+
+          &.hover, &.focus {
+            color: $cyan700;
+          }
+        }
+
+        &.active > a {
+          background-color: $dark-blue500;
+          color: white;
+
+        }
+      }
+    }
+  }
+
+  .form {
+
+    :global {
+
+      .form-control {
+        margin-right: 15px;
+        max-width: 115px;
+      }
+    }
+  }
 }

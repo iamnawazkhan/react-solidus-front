@@ -8,6 +8,7 @@ import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import taxonReducer from './taxons';
+import { reducer as formReducer } from 'redux-form/immutable';
 import languageProviderReducer from '../containers/LanguageProvider/reducer';
 
 /*
@@ -46,6 +47,7 @@ export default function createReducer(asyncReducers) {
     route: routeReducer,
     taxons: taxonReducer,
     language: languageProviderReducer,
+    form: formReducer,
     ...asyncReducers,
   });
 }
