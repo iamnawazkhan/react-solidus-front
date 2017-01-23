@@ -3,10 +3,9 @@
 
 .product {
   width: 260px;
-  margin: 0 10px 20px 10px;
+  margin: 0 10px 20px;
   padding: 10px;
   background-color: white;
-  cursor: pointer;
   @include box-shadow();
   @include small-border-radius();
 
@@ -24,12 +23,16 @@
     padding: 0 10px;
     align-items: center;
 
+    i {
+      cursor: pointer;
+    }
+
     > div:first-child {
       font-size: 16px;
     }
 
     :global {
-      .fa-heart-o:hover {
+      .fa-heart-o:hover, .fa-trash-o {
         color: $red500;
       }
 
@@ -39,7 +42,7 @@
     }
   }
 
-  > img {
+  img {
     margin: 0 auto;
     display: block;
   }

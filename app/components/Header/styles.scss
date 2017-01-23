@@ -40,4 +40,20 @@
       bottom: -13px;
     }
   }
+
+  .headerButtons i {
+    position: relative;
+    margin: 8px 12px;
+
+    :global {
+
+      .badge {
+        position: absolute;
+        bottom: 100%;
+        left: 100%;
+        transform: translateY(25%);
+        background-color: $red500;
+      }
+    }
+  }
 }

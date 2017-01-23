@@ -5,6 +5,7 @@ import { selectProduct } from './selectors';
 import { selectTaxons } from 'selectors/taxons';
 import { getProduct } from './actions';
 import { getTaxons } from 'reducers/taxons';
+import { addToCart } from 'reducers/cart';
 import { Spinner, Gallery } from 'components';
 import { Nav, NavItem } from 'react-bootstrap';
 import styles from './styles.scss';
@@ -14,7 +15,7 @@ import ProductForm from './ProductForm';
 @connect(() => createStructuredSelector({
   product: selectProduct(),
   taxons: selectTaxons(),
-}), { getProduct, getTaxons })
+}), { getProduct, getTaxons, addToCart })
 export default class Product extends Component {
   static propTypes = {
     product: PropTypes.object,
@@ -22,6 +23,7 @@ export default class Product extends Component {
     getProduct: PropTypes.func.isRequired,
     getTaxons: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired,
+    addToCart: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -31,8 +33,17 @@ export default class Product extends Component {
     taxons || this.props.getTaxons(); // eslint-disable-line no-unused-expressions
   }
 
+  getVariant = () => {
+    const { product, params: { variantId } } = this.props;
+    return variantId ? product.variants.find((variant) => variant.id === +variantId) : product.master;
+  };
+
   handleSubmit = (data) => {
-    console.log(data.toJS());
+    this.props.addToCart({
+      ...data.toJS(),
+      variant_id: this.getVariant().id,
+      product_id: this.props.product.id,
+    });
   };
 
   renderProperties = () => {
@@ -78,9 +89,8 @@ export default class Product extends Component {
   };
 
   renderProduct = () => {
-    const { product, params: { variantId } } = this.props;
-
-    const variantItem = variantId ? product.variants.find((variant) => variant.id === +variantId) : product.master;
+    const { product } = this.props;
+    const variantItem = this.getVariant();
 
     return (
       <div>

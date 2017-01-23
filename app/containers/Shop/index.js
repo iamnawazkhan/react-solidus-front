@@ -3,15 +3,17 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectProducts } from './selectors';
 import { selectTaxons } from 'selectors/taxons';
+import { selectCartItems } from 'selectors/cart';
 import { getProducts, getTaxonProducts } from './actions';
 import { getTaxons } from 'reducers/taxons';
-import { TaxonList, ProductList } from 'components';
+import { TaxonList, Product } from 'components';
 import styles from './styles.scss';
 import classnames from 'classnames';
 
 @connect(() => createStructuredSelector({
   taxons: selectTaxons(),
   products: selectProducts(),
+  cart: selectCartItems(),
 }), { getTaxons, getProducts, getTaxonProducts })
 export default class Shop extends Component {
   static propTypes = {
@@ -21,6 +23,7 @@ export default class Shop extends Component {
     getProducts: PropTypes.func.isRequired,
     getTaxonProducts: PropTypes.func.isRequired,
     routeParams: PropTypes.object,
+    cart: PropTypes.array,
   };
 
   state = {};
@@ -82,7 +85,7 @@ export default class Shop extends Component {
   };
 
   render() {
-    const { products } = this.props;
+    const { products, cart } = this.props;
 
     return (
       <div onClick={this.closeDrawer}>
@@ -98,7 +101,16 @@ export default class Shop extends Component {
             </div>
           </div>
         </div>
-        <ProductList products={products} />
+        <div className="flexList">
+          {products && products.length > 0
+            ? products.map((product) => <Product
+              product={product}
+              key={product.id}
+              buyed={cart ? !!cart.find((item) => item.product_id === product.id) : false}
+            />)
+            : <div className="text-center">No products</div>
+          }
+        </div>
       </div>
     );
   }
