@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import { loadCart } from 'reducers/cart';
 import { connect } from 'react-redux';
 
+import 'theme/theme.scss';
 import 'styles/core.scss';
 import 'styles/utils.scss';
 import 'styles/bootstrap-overrides.scss';

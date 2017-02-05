@@ -29,10 +29,14 @@ module.exports = (options) => ({
       loaders: ['style-loader', 'css-loader'],
     }, {
       test: /\.scss$/,
-      exclude: /node_modules/,
+      exclude: /(node_modules)|(app\/theme)/,
       loader: 'style!css?module&localIdentName=[local]___[hash:base64:5]!sass',
     }, {
-      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      test: /\.scss$/,
+      include: /(node_modules)|(app\/theme)/,
+      loader: 'style!css?localIdentName=[local]___[hash:base64:5]!sass',
+    }, {
+      test: /\.(eot|svg|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'file-loader',
     }, {
       test: /\.(jpg|png|gif)$/,
