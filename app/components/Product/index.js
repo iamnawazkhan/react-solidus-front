@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './styles.scss';
-import { Tooltip } from 'components';
+import { IconButton } from 'components';
 import { addToCart, removeFromCart } from 'reducers/cart';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
@@ -26,16 +26,18 @@ export default class Product extends Component { // eslint-disable-line react/pr
         <div className={styles.actions}>
           <div>{product.display_price}</div>
           <div>
-            <Tooltip tooltip="Add to favorites">
-              <i className="fa fa-heart-o icon-big" />
-            </Tooltip>
+            <IconButton className="fa fa-heart-o" tooltip="Like it!" />
             {buyed
-              ? <Tooltip tooltip="Remove from cart">
-                <i className="fa fa-trash-o icon-big" onClick={() => this.props.removeFromCart(product.id)} />
-              </Tooltip>
-              : <Tooltip tooltip="Add to cart">
-                <i className="fa fa-cart-plus icon-big" onClick={() => this.props.addToCart({ variant_id: product.master.id, product_id: product.id, count: 1 })} />
-              </Tooltip>
+              ? <IconButton
+                className="fa fa-trash-o"
+                tooltip="Don't want to buy it now"
+                onClick={() => this.props.removeFromCart(product.id)}
+              />
+              : <IconButton
+                className="fa fa-cart-plus"
+                tooltip="Buy it!"
+                onClick={() => this.props.addToCart({ variant_id: product.master.id, product_id: product.id, count: 1 })}
+              />
             }
           </div>
         </div>

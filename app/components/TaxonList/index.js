@@ -82,11 +82,11 @@ export default class TaxonList extends Component {
               className={classNames(styles.taxon, styles.clickable)}
               onClick={() => this.chooseTaxon()}
               onMouseEnter={() => this.hideOddLists(0)}
-            >Home</li>,
+            >All goods</li>,
             taxons.filter((taxon) => !taxon.parent_id).map((taxon) => this.renderTaxon(taxon, 0)),
           ]
           :
-            <li className={styles.taxon}>No filter existed</li>
+            <li className={styles.taxon}>All goods</li>
         }
       </ul>
     );

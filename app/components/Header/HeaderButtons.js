@@ -5,6 +5,7 @@ import { selectCartItems } from 'selectors/cart';
 import { createStructuredSelector } from 'reselect';
 import styles from './styles.scss';
 import isEmpty from 'lodash/isEmpty';
+import { IconButton } from 'components';
 
 @connect(() => createStructuredSelector({
   cart: selectCartItems(),
@@ -19,9 +20,11 @@ export default class HeaderButtons extends Component { // eslint-disable-line re
 
     return (
       <div className={styles.headerButtons}>
-        <i className="fa fa-shopping-cart clickable icon-big">{!isEmpty(cart) && <Badge>{cart.length}</Badge>}</i>
-        <i className="fa fa-heart clickable icon-big" />
-        <i className="fa fa-user-circle clickable icon-big" />
+        <IconButton className="fa fa-shopping-cart" tooltip="Your order">
+          {!isEmpty(cart) && <Badge>{cart.length}</Badge>}
+        </IconButton>
+        <IconButton className="fa fa-heart" tooltip="Liked goods" />
+        <IconButton className="fa fa-user-circle" tooltip="Sign in" />
       </div>
     );
   }
