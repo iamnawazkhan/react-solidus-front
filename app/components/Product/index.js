@@ -21,7 +21,7 @@ export default class Product extends Component { // eslint-disable-line react/pr
       <div className={styles.product}>
         <Link to={`/product/${product.id}`}>
           <img src={product.master.images[0].large_url} alt="no" width="180" height="180" />
-          <div className={styles.name}><span className="text-center">{product.name}</span></div>
+          <h4 className={styles.name}><span>{product.name}</span></h4>
         </Link>
         <div className={styles.actions}>
           <div>{product.display_price}</div>

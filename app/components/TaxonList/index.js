@@ -74,20 +74,13 @@ export default class TaxonList extends Component {
     const { taxons } = this.props;
     return (
       <ul key="initialList" className={styles.taxonomyList} onMouseEnter={this.clearTimeout} onMouseLeave={this.onListMouseLeave}>
-        {taxons && taxons.length > 0
-          ?
-          [
-            <li
-              key="home"
-              className={classNames(styles.taxon, styles.clickable)}
-              onClick={() => this.chooseTaxon()}
-              onMouseEnter={() => this.hideOddLists(0)}
-            >All goods</li>,
-            taxons.filter((taxon) => !taxon.parent_id).map((taxon) => this.renderTaxon(taxon, 0)),
-          ]
-          :
-            <li className={styles.taxon}>All goods</li>
-        }
+        <li
+          key="home"
+          className={classNames(styles.taxon, styles.clickable)}
+          onClick={() => this.chooseTaxon()}
+          onMouseEnter={() => this.hideOddLists(0)}
+        >All goods</li>
+        {taxons.filter((taxon) => !taxon.parent_id).map((taxon) => this.renderTaxon(taxon, 0))}
       </ul>
     );
   };
@@ -105,9 +98,11 @@ export default class TaxonList extends Component {
   ));
 
   render() {
+    const { taxons } = this.props;
+
     return (
       <div className={styles.taxonomyListContainer}>
-        {this.renderMainTaxonList()}
+        {taxons && taxons.length > 0 && this.renderMainTaxonList()}
         {this.renderAdditionalTaxonLists()}
       </div>
     );

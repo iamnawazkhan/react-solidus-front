@@ -3,12 +3,24 @@
 .leftSidebar {
   margin-right: 10px;
   float: left;
+  position: relative;
+}
+
+.leftMiniSidebar {
+
+  :global {
+
+    .fa-times, .fa-bars {
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+  }
 }
 
 .drawer {
   position: absolute;
-  left: 0;
-  top: 80px;
+  left: 10px;
+  top: 0;
 }
 
 .hide {

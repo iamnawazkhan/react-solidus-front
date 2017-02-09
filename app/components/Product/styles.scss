@@ -10,11 +10,17 @@
   @include small-border-radius();
 
   .name {
-    min-height: 40px;
+    height: 40px;
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+
+    > span {
+      text-align: center;
+      max-height: 100%;
+    }
   }
 
   .actions {

@@ -42,4 +42,27 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .fadeIn {
+    animation-name: fadeOut;
+    animation-duration: .7s;
+    visibility: hidden;
+    transition: visibility 0s linear .7s;
+
+    &.shown {
+      animation-name: fadeIn;
+      visibility: visible;
+      transition: none;
+    }
+  }
+
+  @keyframes :global(fadeIn) {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes :global(fadeOut) {
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+  }
 }

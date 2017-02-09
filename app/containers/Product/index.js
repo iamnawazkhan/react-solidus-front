@@ -11,6 +11,7 @@ import { Nav, NavItem } from 'react-bootstrap';
 import styles from './styles.scss';
 import { LinkContainer } from 'react-router-bootstrap';
 import ProductForm from './ProductForm';
+import classnames from 'classnames';
 
 @connect(() => createStructuredSelector({
   product: selectProduct(),
@@ -95,10 +96,10 @@ export default class Product extends Component {
     return (
       <div>
         <h2 className="text-center">{variantItem.name}</h2>
-        <div className="row">
-          <div className="col-xs-12 col-md-6">
+        <div className={classnames('row', styles.row)}>
+          <div className="col-xs-12 col-md-6 col-lg-4 col-lg-offset-2">
             <Gallery images={variantItem.images} />
-            {product.product_properties.length > 0 && this.renderProperties(product.product_properties)}
+            {product.product_properties.length && this.renderProperties(product.product_properties)}
           </div>
           <div className="col-xs-12 col-md-6">
             <div>{product.description}</div>

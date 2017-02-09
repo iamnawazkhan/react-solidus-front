@@ -93,7 +93,7 @@ export default class Shop extends Component {
           <div className="hidden-xs hidden-sm">
             {this.renderContent()}
           </div>
-          <div className="hidden-md hidden-lg" onClick={(e) => e.stopPropagation()}>
+          <div className={classnames('hidden-md hidden-lg', styles.leftMiniSidebar)} onClick={(e) => e.stopPropagation()}>
             <i className={classnames('fa fa-bars', { [styles.hide]: this.state.showDrawer })} onClick={this.openDrawer} />
             <div className={classnames(styles.drawer, { hidden: !this.state.showDrawer })}>
               <i className={classnames('fa fa-times', styles.close)} onClick={this.closeDrawer} />

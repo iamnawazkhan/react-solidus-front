@@ -3,6 +3,7 @@ import styles from './styles.scss';
 import Slider from 'react-slick';
 import noPictire from 'static/nopicture.png';
 import { Modal } from 'react-bootstrap';
+import classnames from 'classnames';
 
 export default class Gallery extends Component {
   static propTypes = {
@@ -51,7 +52,7 @@ export default class Gallery extends Component {
             arrows={false}
             slidesToShow={1}
             slidesToScroll={1}
-            className={styles.slider}
+            className={classnames(styles.slider, { [styles.withNav]: images.length > 1 })}
           >
             {images.map((image, index) => <div key={image.id} className={styles.carouselImgWrapper}>
               <img src={image.large_url} onClick={() => this.setState({ showModal: true, selectedImg: index })} role="presentation" />

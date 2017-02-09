@@ -14,46 +14,115 @@
   @include card-shadow();
 
   > div {
-    display: flex;
-    justify-content: space-between;
     height: 100%;
 
     &:before, &:after {
       content: none;
     }
 
-    > div {
-      margin: auto 0;
-      display: inline-block;
-    }
+    .contentWrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
 
-    .brandName {
-      vertical-align: super;
-      display: inline-block;
-      font-size: 24px;
-      margin-left: 5px;
-    }
+      > div {
+        margin: auto 0;
+        display: inline-block;
+      }
 
-    .brandMotto {
-      position: absolute;
-      font-size: 13px;
-      bottom: -13px;
+      .brandName {
+        vertical-align: super;
+        display: inline-block;
+        font-size: 24px;
+        margin-left: 5px;
+      }
+
+      .brandMotto {
+        position: absolute;
+        font-size: 13px;
+        bottom: -13px;
+      }
+
+      .backdrop {
+        position: fixed;
+        z-index: 98;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(black, 0.6);
+      }
+
+      .offcanvas {
+        position: fixed;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 100%;
+        z-index: 99;
+        background: white;
+        border-right: 1px solid rgba(black, 0.1);
+        box-shadow: 0 2px 3px 3px rgba(black, 0.2);
+        transform: translateX(-105%);
+        color: $default;
+        transition: transform 0.3s ease;
+
+        > div {
+          margin: 8px 12px;
+
+          &.mobileLogo {
+            margin-bottom: 18px;
+          }
+        }
+
+        .nav {
+          margin: 20px 0 0;
+          list-style-type: none;
+          padding: 0;
+
+          li {
+            margin: 8px 12px;
+            font-size: 16px;
+            position: relative;
+          }
+
+          :global {
+
+            .badge {
+              bottom: 50%;
+              transform: translateY(50%);
+              left: initial;
+              right: 20px;
+            }
+          }
+        }
+
+        path {
+          fill: $default;
+        }
+
+        &.collapsed {
+          transform: translateX(0);
+        }
+      }
     }
   }
 
   .headerButtons i {
     position: relative;
     margin: 8px 12px;
+  }
 
-    :global {
+  :global {
 
-      .badge {
-        position: absolute;
-        bottom: 100%;
-        left: 100%;
-        transform: translateY(25%);
-        background-color: $red500;
-      }
+    .badge {
+      position: absolute;
+      bottom: 100%;
+      left: 100%;
+      transform: translateY(25%);
+      background-color: $red500;
     }
   }
 }

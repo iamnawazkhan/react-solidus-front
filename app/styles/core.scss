@@ -1,14 +1,12 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 @import 'variables';
 
 body {
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   background-color: #FAFAFA;
   color: $default;
 }
 
 html, body {
-  font-size: 14px;
+  font-size: 15px;
   height: 100%;
   padding: 0 !important;
   margin: 0;
@@ -16,9 +14,6 @@ html, body {
 }
 
 :global {
-
-  @import "./slick/slick.scss";
-  @import "./slick/slick-theme.scss";
 
   #app {
     height: 100%;
