@@ -1,0 +1,121 @@
+@import "../../styles/variables";
+
+.modal {
+
+  .header {
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      border-bottom: 10px solid $grey200;
+      border-right: 10px solid transparent;
+      border-left: 10px solid transparent;
+      bottom: 0;
+      z-index: 10;
+      transition: left .25s ease;
+      transform: translateX(-50%);
+    }
+
+    &.login:before {
+      content: '';
+      left: 25%;
+    }
+
+    &.signUp:before {
+      content: '';
+      left: 75%;
+    }
+
+    li {
+      padding: 8px 12px 12px;
+      position: relative;
+      flex: 0 0 50%;
+      text-align: center;
+
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .content {
+    background-color: $grey200;
+    border-radius: 3px;
+  }
+
+  :global .modal-dialog {
+    width: 400px;
+
+    @media all and (max-width: $xs-max) {
+      width: auto;
+      margin: 30px auto;
+      max-width: 400px;
+    }
+  }
+
+  :global .modal-content {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  :global .btn {
+    margin: 0 5px 10px;
+    flex: 1 0 calc(50% - 10px);
+    padding: 8px 12px;
+    min-width: 130px;
+
+    i {
+      font-size: 18px;
+    }
+  }
+
+  .vk {
+    background-color: $vk-color;
+    border-color: $vk-color;
+    opacity: .8;
+
+    &:hover {
+      background-color: $vk-color;
+      border-color: $vk-color;
+      opacity: 1;
+    }
+  }
+
+  .fb {
+    background-color: $fb-color;
+    border-color: $fb-color;
+    opacity: .8;
+
+    &:hover {
+      background-color: $fb-color;
+      border-color: $fb-color;
+      opacity: 1;
+    }
+  }
+
+  .linkedIn {
+    background-color: $linkedIn-color;
+    border-color: $linkedIn-color;
+    opacity: .8;
+
+    &:hover {
+      background-color: $linkedIn-color;
+      border-color: $linkedIn-color;
+      opacity: 1;
+    }
+  }
+}

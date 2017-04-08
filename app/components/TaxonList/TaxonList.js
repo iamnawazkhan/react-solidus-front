@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import styles from './styles.scss';
+import styles from './taxonList.scss';
 import classNames from 'classnames';
 
 const timeout = 1000;

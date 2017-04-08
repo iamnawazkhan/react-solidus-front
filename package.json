@@ -157,7 +157,9 @@
       "react/self-closing-comp": 0,
       "redux-saga/no-yield-in-race": 2,
       "redux-saga/yield-effects": 2,
-      "require-yield": 0
+      "require-yield": 0,
+      "no-param-reassign": 0,
+      "jsx-a11y/label-has-for": 0
     },
     "settings": {
       "import/resolver": {
@@ -219,6 +221,7 @@
     "redux-immutable": "3.0.8",
     "redux-saga": "0.12.0",
     "reselect": "2.5.4",
+    "resolve-url-loader": "^1.6.1",
     "sass-loader": "^4.0.2",
     "slick-carousel": "^1.6.0",
     "warning": "3.0.0",

@@ -1,6 +1,6 @@
 import React from 'react';
 import { PacmanLoader } from 'halogen';
-import styles from './styles.scss';
+import styles from './spinner.scss';
 
 export default () => (
   <div className={styles.wrapper}>

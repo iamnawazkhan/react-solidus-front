@@ -30,7 +30,7 @@ module.exports = (options) => ({
     }, {
       test: /\.scss$/,
       exclude: /(node_modules)|(app\/theme)/,
-      loader: 'style!css?module&localIdentName=[local]___[hash:base64:5]!sass',
+      loader: 'style!css?modules&localIdentName=[name]__[local]___[hash:base64:5]!sass',
     }, {
       test: /\.scss$/,
       include: /(node_modules)|(app\/theme)/,

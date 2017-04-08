@@ -6,8 +6,8 @@ import { selectTaxons } from 'selectors/taxons';
 import { selectCartItems } from 'selectors/cart';
 import { getProducts, getTaxonProducts } from './actions';
 import { getTaxons } from 'reducers/taxons';
-import { TaxonList, Product } from 'components';
-import styles from './styles.scss';
+import { TaxonList, ProductCard, Spinner } from 'components';
+import styles from './shop.scss';
 import classnames from 'classnames';
 
 @connect(() => createStructuredSelector({
@@ -103,12 +103,12 @@ export default class Shop extends Component {
         </div>
         <div className="flexList">
           {products && products.length > 0
-            ? products.map((product) => <Product
+            ? products.map((product) => <ProductCard
               product={product}
               key={product.id}
               buyed={cart ? !!cart.find((item) => item.product_id === product.id) : false}
             />)
-            : <div className="text-center">No products</div>
+            : <Spinner />
           }
         </div>
       </div>

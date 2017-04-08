@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Tooltip } from 'components';
 import classnames from 'classnames';
-import styles from './styles.scss';
+import styles from './iconButton.scss';
 
 const IconButton = ({ className, tooltip, tooltipPlacement, ...props }) => (
   tooltip

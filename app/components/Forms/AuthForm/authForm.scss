@@ -1,0 +1,30 @@
+@import "../../../styles/variables";
+
+.form {
+  margin: 0 5px;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    width: 100%;
+    border-top: 1px solid rgba(black, .15);
+  }
+
+  .submit {
+    width: 100%;
+  }
+}
+
+.header {
+  margin-top: 0;
+  text-align: center;
+
+  span {
+    background-color: $grey200;
+    padding: 0 5px;
+    z-index: 1;
+    position: relative;
+  }
+}

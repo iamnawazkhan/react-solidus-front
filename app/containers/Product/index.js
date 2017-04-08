@@ -8,7 +8,7 @@ import { getTaxons } from 'reducers/taxons';
 import { addToCart } from 'reducers/cart';
 import { Spinner, Gallery } from 'components';
 import { Nav, NavItem } from 'react-bootstrap';
-import styles from './styles.scss';
+import styles from './product.scss';
 import { LinkContainer } from 'react-router-bootstrap';
 import ProductForm from './ProductForm';
 import classnames from 'classnames';
@@ -99,7 +99,7 @@ export default class Product extends Component {
         <div className={classnames('row', styles.row)}>
           <div className="col-xs-12 col-md-6 col-lg-4 col-lg-offset-2">
             <Gallery images={variantItem.images} />
-            {product.product_properties.length && this.renderProperties(product.product_properties)}
+            {!!product.product_properties.length && this.renderProperties(product.product_properties)}
           </div>
           <div className="col-xs-12 col-md-6">
             <div>{product.description}</div>

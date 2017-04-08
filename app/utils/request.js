@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import toQuery from './toQuery';
 
 /**
  * Parses the JSON returned by a network request
@@ -36,8 +37,9 @@ function checkStatus(response) {
  *
  * @return {object}           The response data
  */
-export default function request(url, options) {
-  return fetch(url, options)
+export default function request(url, options = {}) {
+  const path = options.query ? url + toQuery(options.query) : url;
+  return fetch(path, options)
     .then(checkStatus)
     .then(parseJSON);
 }

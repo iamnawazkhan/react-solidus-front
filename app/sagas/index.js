@@ -1,3 +1,7 @@
 import taxonSagas from './taxons';
+import authSagas from './auth';
 
-export default taxonSagas;
+export default [
+  ...taxonSagas,
+  ...authSagas,
+];

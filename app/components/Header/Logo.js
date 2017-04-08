@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import styles from './styles.scss';
+import styles from './header.scss';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import classnames from 'classnames';

@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import { Header, Footer } from 'components';
-import styles from './styles.scss';
+import { Header, Footer, Auth } from 'components';
+import styles from './coreLayout.scss';
 import classnames from 'classnames';
 import { loadCart } from 'reducers/cart';
 import { connect } from 'react-redux';
@@ -36,6 +36,7 @@ export default class CoreLayout extends Component {
     return (
       <div className={styles.globalContainer}>
         <Header />
+        <Auth />
         <div className={classnames('container', styles.content)}>
           {this.props.children}
         </div>

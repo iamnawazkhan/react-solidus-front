@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import styles from './styles.scss';
+import styles from './gallery.scss';
 import Slider from 'react-slick';
 import noPictire from 'static/nopicture.png';
 import { Modal } from 'react-bootstrap';

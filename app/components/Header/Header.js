@@ -3,7 +3,7 @@ import { Badge } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { selectCartItems } from 'selectors/cart';
 import { createStructuredSelector } from 'reselect';
-import styles from './styles.scss';
+import styles from './header.scss';
 import Logo from './Logo';
 import HeaderSearch from './HeaderSearch';
 import isEmpty from 'lodash/isEmpty';
@@ -18,6 +18,11 @@ export default class Header extends Component {
     cart: PropTypes.array,
   };
 
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {};
@@ -27,6 +32,12 @@ export default class Header extends Component {
     this.setState({
       collapsed: !this.state.collapsed,
     });
+  };
+
+  login = () => {
+    const { location } = this.context;
+    const newLocation = { ...location, query: { ...location.query, auth: 'login' } };
+    this.context.router.push(newLocation);
   };
 
   render() {
@@ -45,13 +56,13 @@ export default class Header extends Component {
                   <Badge>{cart.length}</Badge>
                 </IconButton>}
                 <IconButton className="fa fa-heart" tooltip="Liked goods" />
-                <IconButton className="fa fa-user-circle" tooltip="Sign in" />
+                <IconButton className="fa fa-user-circle" tooltip="Sign in" onClick={this.login} />
               </div>
             </div>
           </div>
           <div className={classnames('hidden-sm hidden-md hidden-lg', styles.contentWrapper)}>
             <IconButton className="fa fa-bars" onClick={this.toggleCollapse} />
-            <IconButton className="fa fa-user-circle" tooltip="Sign in" />
+            <IconButton className="fa fa-user-circle" tooltip="Sign in" onClick={this.login} />
             <div className={classnames(styles.offcanvas, { [styles.collapsed]: collapsed })}>
               <Logo className={styles.mobileLogo} />
               <HeaderSearch />

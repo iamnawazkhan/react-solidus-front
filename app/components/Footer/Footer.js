@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.scss';
+import styles from './footer.scss';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 

@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form/immutable';
 import { Button } from 'react-bootstrap';
 import { required, maxValue } from 'utils/validators';
 import { InputCount } from 'components';
-import styles from './styles.scss';
+import styles from './product.scss';
 import classnames from 'classnames';
 
 @reduxForm({

@@ -9,6 +9,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import cart from './cart';
 import taxons from './taxons';
+import auth from './auth';
 import { reducer as formReducer } from 'redux-form/immutable';
 import languageProviderReducer from '../containers/LanguageProvider/reducer';
 
@@ -48,6 +49,7 @@ export default function createReducer(asyncReducers) {
     route: routeReducer,
     taxons,
     cart,
+    auth,
     language: languageProviderReducer,
     form: formReducer,
     ...asyncReducers,
